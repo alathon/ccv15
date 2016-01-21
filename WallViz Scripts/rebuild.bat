@@ -9,6 +9,9 @@ xcopy "C:\Users\wallvizpc\workspace\ccv15\WallViz Scripts\xml1" "C:\Users\wallvi
 xcopy "C:\Users\wallvizpc\workspace\ccv15\WallViz Scripts\xml2" "C:\Users\wallvizpc\Desktop\ccvRun\2\data\xml\" /S /Y
 xcopy "C:\Users\wallvizpc\workspace\ccv15\WallViz Scripts\xml3" "C:\Users\wallvizpc\Desktop\ccvRun\3\data\xml\" /S /Y
 
-@echo start "C:\Users\wallvizpc\Desktop\ccvRun\1\CCV.exe" >> "C:\Users\wallvizpc\Desktop\ccvRun\run.bat"
-@echo start "C:\Users\wallvizpc\Desktop\ccvRun\2\CCV.exe" >> "C:\Users\wallvizpc\Desktop\ccvRun\run.bat"
-@echo start "C:\Users\wallvizpc\Desktop\ccvRun\3\CCV.exe" >> "C:\Users\wallvizpc\Desktop\ccvRun\run.bat"
+@echo cd C:\Users\wallvizpc\Desktop\ccvRun\1\ >> "C:\Users\wallvizpc\Desktop\ccvRun\run.bat"
+@echo start C:\Users\wallvizpc\Desktop\ccvRun\1\CCV.exe >> "C:\Users\wallvizpc\Desktop\ccvRun\run.bat"
+@echo cd C:\Users\wallvizpc\Desktop\ccvRun\2\ >> "C:\Users\wallvizpc\Desktop\ccvRun\run.bat"
+@echo start C:\Users\wallvizpc\Desktop\ccvRun\2\CCV.exe >> "C:\Users\wallvizpc\Desktop\ccvRun\run.bat"
+@echo cd C:\Users\wallvizpc\Desktop\ccvRun\3\ >> "C:\Users\wallvizpc\Desktop\ccvRun\run.bat"
+@echo start C:\Users\wallvizpc\Desktop\ccvRun\3\CCV.exe >> "C:\Users\wallvizpc\Desktop\ccvRun\run.bat"
