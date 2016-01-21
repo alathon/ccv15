@@ -20,7 +20,8 @@ typedef enum
 	CMU,
 	FFMV,
 	DIRECTSHOW,
-	KINECT
+	KINECT,
+	GS3
 } CAMERATYPE;
 
 typedef enum 

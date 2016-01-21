@@ -13,6 +13,7 @@
 #include "ofxffmv.h"
 #include "ofxPS3.h"
 #include "ofxDShow.h"
+#include "ofxGS3.h"
 #include "ofxKinect.h"
 #include "ofxCMUCamera.h"
 #include "ofxMultiplexer.h"

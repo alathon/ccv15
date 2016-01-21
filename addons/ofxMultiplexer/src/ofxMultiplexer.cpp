@@ -416,6 +416,8 @@ void ofxMultiplexer::computeCameraMaps()
 		return;
 	int size = actualStitchedFrameWidth*actualStitchedFrameHeight;
 	int cameraCount = actualCameraGridWidth * actualCameraGridHeight;
+	cout << "Camera Count: " << cameraCount << endl;
+
 	for (int i=0;i<4;i++)
 		memset(cameraMap[i],NULL_CAMERA,actualStitchedFrameWidth*actualStitchedFrameHeight*sizeof(unsigned char));
 	if (interleaveMode)

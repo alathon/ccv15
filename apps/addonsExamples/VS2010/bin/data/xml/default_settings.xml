@@ -1,4 +1,29 @@
 <CAMERAS>
+	<CAMERA>
+        <SETTINGS>
+            <TYPE>GS3</TYPE>
+            <FRAME>
+                <WIDTH>2048</WIDTH>
+                <HEIGHT>2048</HEIGHT>
+                <LEFT>0</LEFT>
+                <TOP>0</TOP>
+				<RAW>0</RAW>
+            </FRAME>
+            <SENSOR>
+                <MODE>0</MODE>
+                <DEPTH>1</DEPTH>
+                <GAIN>
+					<AUTO>0</AUTO>			
+					<VALUE>16</VALUE>
+				</GAIN>
+                <EXPOSURE>
+					<AUTO>0</AUTO>
+					<VALUE>100</VALUE>	
+				</EXPOSURE>
+                <FRAMERATE>60</FRAMERATE>
+            </SENSOR>
+        </SETTINGS>
+    </CAMERA>
     <CAMERA>
         <SETTINGS>
             <TYPE>PS3</TYPE>

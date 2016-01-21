@@ -179,6 +179,8 @@ void ofxNCoreVision::loadXMLSettings()
 		supportedCameraTypes.push_back(FFMV);
 	if (XML.getValue("CONFIG:MULTIPLEXER:CAMERATYPES:KINECT", 0))
 		supportedCameraTypes.push_back(KINECT);
+	if (XML.getValue("CONFIG:MULTIPLEXER:CAMERATYPES:GS3", 0))
+		supportedCameraTypes.push_back(GS3);
 	if (XML.getValue("CONFIG:MULTIPLEXER:CAMERATYPES:DIRECTSHOW", 0))
 		supportedCameraTypes.push_back(DIRECTSHOW);
 	videoFileName				= XML.getValue("CONFIG:VIDEO:FILENAME", "test_videos/RearDI.m4v");

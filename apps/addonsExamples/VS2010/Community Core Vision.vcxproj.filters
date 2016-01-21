@@ -152,6 +152,9 @@
     <Filter Include="res">
       <UniqueIdentifier>{33b41c66-1ae8-4034-9acb-26f9a9e01a3f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="addons\ofxGS3">
+      <UniqueIdentifier>{ccc92497-fbde-4da9-936a-115272978d27}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -357,6 +360,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\addons\ofxKinect\src\ofxKinect.cpp">
       <Filter>addons\ofxKinect\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxGS3\src\ofxGS3.cpp">
+      <Filter>addons\ofxGS3</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -665,6 +671,9 @@
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>res</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxGS3\src\ofxGS3.h">
+      <Filter>addons\ofxGS3</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

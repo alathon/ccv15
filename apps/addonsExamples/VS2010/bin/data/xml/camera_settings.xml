@@ -41,4 +41,21 @@
             </SENSOR>
         </SETTINGS>
     </CAMERA>
+    <CAMERA>
+        <SETTINGS>
+            <GUID>15355946</GUID>
+            <TYPE>GS3</TYPE>
+            <FRAME>
+                <RAW>0</RAW>
+                <WIDTH>2048</WIDTH>
+                <HEIGHT>2048</HEIGHT>
+                <LEFT>0</LEFT>
+                <TOP>0</TOP>
+            </FRAME>
+            <SENSOR>
+                <MODE>0</MODE>
+                <DEPTH>1</DEPTH>
+            </SENSOR>
+        </SETTINGS>
+    </CAMERA>
 </CAMERAS>

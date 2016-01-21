@@ -10,11 +10,12 @@ Can now use VIDEO or CAMERA MULTIPLEXER MODES.
         <HEIGHT>480</HEIGHT>
         <FRAMERATE>90</FRAMERATE>
         <CAMERATYPES>
-            <PS3>1</PS3>
+            <PS3>0</PS3>
             <FFMV>0</FFMV>
             <KINECT>0</KINECT>
             <CMU>0</CMU>
-            <DIRECTSHOW>1</DIRECTSHOW>
+            <DIRECTSHOW>0</DIRECTSHOW>
+            <GS3>1</GS3>
         </CAMERATYPES>
     </MULTIPLEXER>
     <VIDEO>
@@ -41,7 +42,7 @@ Can now use VIDEO or CAMERA MULTIPLEXER MODES.
         <HEIGHT>600</HEIGHT>
     </WINDOW>
     <BOOLEAN>
-        <PRESSURE>0</PRESSURE>
+        <PRESSURE>205</PRESSURE>
         <LABELS>1</LABELS>
         <OUTLINES>1</OUTLINES>
         <LEARNBG>0</LEARNBG>

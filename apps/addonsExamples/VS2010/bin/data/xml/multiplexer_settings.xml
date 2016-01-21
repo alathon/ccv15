@@ -4,9 +4,33 @@
         <HEIGHT>1</HEIGHT>
     </CAMERAGRID>
     <CALIBRATIONGRID>
-        <WIDTH>3</WIDTH>
-        <HEIGHT>3</HEIGHT>
+        <WIDTH>1</WIDTH>
+        <HEIGHT>1</HEIGHT>
     </CALIBRATIONGRID>
-    <INTERLEAVE>1</INTERLEAVE>
-    <CAMERAS></CAMERAS>
+    <INTERLEAVE>0</INTERLEAVE>
+    <CAMERAS>
+        <CAMERA>
+            <GUID>15355946</GUID>
+            <TYPE>GS3</TYPE>
+            <INDEX>0</INDEX>
+            <POINTARRAY>
+                <POINT>
+                    <X>0.000000</X>
+                    <Y>0.000000</Y>
+                </POINT>
+                <POINT>
+                    <X>1.000000</X>
+                    <Y>0.000000</Y>
+                </POINT>
+                <POINT>
+                    <X>0.000000</X>
+                    <Y>1.000000</Y>
+                </POINT>
+                <POINT>
+                    <X>1.000000</X>
+                    <Y>1.000000</Y>
+                </POINT>
+            </POINTARRAY>
+        </CAMERA>
+    </CAMERAS>
 </MULTIPLEXER>

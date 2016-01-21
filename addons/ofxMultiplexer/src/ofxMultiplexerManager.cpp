@@ -495,8 +495,20 @@ void ofxMultiplexerManager::enumerateCameras()
 {
 	for (int i=0;i<allowdedCameraTypes.size();i++)
 	{
+		if (allowdedCameraTypes[i] == GS3) {
+			ofxCameraBase* cam = (ofxCameraBase*)(new ofxgs3());
+			int cameraCount = 0;
+			GUID* cameraGUIDs = cam->getBaseCameraGuids(&cameraCount);
+			for (int j = 0; j < cameraCount; j++) {
+				ofxCameraBase* newCam = (ofxCameraBase*)(new ofxgs3());
+				newCam->initializeWithGUID(cameraGUIDs[j]);
+				cameraBases.push_back(newCam);
+			}
+			delete cam;
+		}
 		if (allowdedCameraTypes[i] == PS3)
 		{
+			continue;
 			ofxCameraBase* cam = (ofxCameraBase*)(new ofxPS3());
 			int cameraCount = 0;
 			GUID* cameraGUIDs = cam->getBaseCameraGuids(&cameraCount);
@@ -510,6 +522,7 @@ void ofxMultiplexerManager::enumerateCameras()
 		}
 		if (allowdedCameraTypes[i] == CMU)
 		{
+			continue;
 			ofxCameraBase* cam = (ofxCameraBase*)(new ofxCMUCamera());
 			int cameraCount = 0;
 			GUID* cameraGUIDs = cam->getBaseCameraGuids(&cameraCount);
@@ -523,6 +536,7 @@ void ofxMultiplexerManager::enumerateCameras()
 		}
 		if (allowdedCameraTypes[i] == FFMV)
 		{
+			continue;
 			ofxCameraBase* cam = (ofxCameraBase*)(new ofxffmv());
 			int cameraCount = 0;
 			GUID* cameraGUIDs = cam->getBaseCameraGuids(&cameraCount);
@@ -536,6 +550,7 @@ void ofxMultiplexerManager::enumerateCameras()
 		}
 		if (allowdedCameraTypes[i] == KINECT)
 		{
+			continue;
 			ofxCameraBase* cam = (ofxCameraBase*)(new ofxKinect());
 			int cameraCount = 0;
 			GUID* cameraGUIDs = cam->getBaseCameraGuids(&cameraCount);
@@ -549,6 +564,7 @@ void ofxMultiplexerManager::enumerateCameras()
 		}
 		if (allowdedCameraTypes[i] == DIRECTSHOW)
 		{
+			continue;
 			ofxCameraBase* cam = (ofxCameraBase*)(new ofxDShow());
 			int cameraCount = 0;
 			GUID* cameraGUIDs = cam->getBaseCameraGuids(&cameraCount);
