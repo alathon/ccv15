@@ -51,6 +51,7 @@
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CCV_debug</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CCV</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -100,11 +101,11 @@
       </DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>1394camera.lib;OpenGL32.lib;vfw32.lib;GLu32.lib;kernel32.lib;setupapi.lib;glut32.lib;videoInput.lib;libfreetype.lib;FreeImage.lib;qtmlClient.lib;dsound.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;GLee.lib;fmodex_vc.lib;glu32.lib;PocoFoundationmt.lib;PocoNetmt.lib;PocoUtilmt.lib;PocoXMLmt.lib;Ws2_32.lib;..\..\..\addons\ofxOpenCv\libs\opencv\lib\vs2008\cv110.lib;..\..\..\addons\ofxOpenCv\libs\opencv\lib\vs2008\cvaux110.lib;..\..\..\addons\ofxOpenCv\libs\opencv\lib\vs2008\cxcore110.lib;..\..\..\addons\ofxOsc\libs\oscpack\lib\vs2008\oscpack.lib;..\..\..\addons\ofxKinect\lib\CLNUIDevice.lib;..\..\..\addons\ofxFFMV\lib\PGRFlyCapture.lib;..\..\..\addons\ofxFFMV\lib\pgrflycapturegui.lib;..\..\..\addons\ofxPS3\lib\CLEyeMulticam.lib;..\..\..\libs\openFrameworksCompiled\lib\vs2008\openframeworksLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>1394camera.lib;OpenGL32.lib;vfw32.lib;GLu32.lib;kernel32.lib;setupapi.lib;glut32.lib;videoInput.lib;libfreetype.lib;FreeImage.lib;qtmlClient.lib;dsound.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;GLee.lib;fmodex_vc.lib;glu32.lib;PocoFoundationmt.lib;PocoNetmt.lib;PocoUtilmt.lib;PocoXMLmt.lib;Ws2_32.lib;..\..\..\addons\ofxOpenCv\libs\opencv\lib\vs2010\cv110.lib;..\..\..\addons\ofxOpenCv\libs\opencv\lib\vs2010\cvaux110.lib;..\..\..\addons\ofxOpenCv\libs\opencv\lib\vs2010\cxcore110.lib;..\..\..\addons\ofxOsc\libs\oscpack\lib\vs2010\oscpack.lib;..\..\..\addons\ofxKinect\lib\CLNUIDevice.lib;..\..\..\addons\ofxFFMV\lib\PGRFlyCapture.lib;..\..\..\addons\ofxFFMV\lib\pgrflycapturegui.lib;..\..\..\addons\ofxPS3\lib\CLEyeMulticam.lib;..\..\..\libs\openFrameworksCompiled\lib\vs2010\openframeworksLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)CCV.exe</OutputFile>
-      <AdditionalLibraryDirectories>..\..\..\addons\ofxCMU\lib;..\..\..\libs\glut\lib\vs2008;..\..\..\libs\rtAudio\lib\vs2008;..\..\..\libs\freeImage\lib\vs2008;..\..\..\libs\freetype\lib\vs2008;..\..\..\libs\fmodex\lib\vs2008;..\..\..\libs\videoInput\lib\vs2008;..\..\..\libs\glee\lib\vs2008;..\..\..\libs\glu\lib\vs2008;..\..\..\libs\Poco\lib\vs2008;..\..\..\libs\quicktime\lib\vs2008;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\..\addons\ofxCMU\lib;..\..\..\libs\glut\lib\vs2008;..\..\..\libs\rtAudio\lib\vs2008;..\..\..\libs\freeImage\lib\vs2008;..\..\..\libs\freetype\lib\vs2008;..\..\..\libs\fmodex\lib\vs2008;..\..\..\libs\videoInput\lib\vs2008;..\..\..\libs\glee\lib\vs2008;..\..\..\libs\glu\lib\vs2008;..\..\..\libs\Poco\lib\vs2010;..\..\..\libs\quicktime\lib\vs2008;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <IgnoreSpecificDefaultLibraries>atlthunk.lib; LIBC.lib; LIBCMT;msvcrtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>atlthunk.lib; LIBC.lib;libcmt.lib;libcpmtd.lib;msvcrtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
