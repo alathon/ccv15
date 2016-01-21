@@ -134,20 +134,17 @@ void ofxgs3::getNewFrame(unsigned char* newFrame)
 {
 	Image rawImage;
 	Error error;
+	error = rawImage.SetColorProcessing(NEAREST_NEIGHBOR);
+	if (error != PGRERROR_OK) {
+		error.PrintErrorTrace();
+		return;
+	}
+
 	error = cam.RetrieveBuffer(&rawImage);
 	if (error != PGRERROR_OK)
 	{
 		cout << "Error grabbing frame with GS3 camera!" << endl;
 		error.PrintErrorTrace();
-		return;
-	}
-
-	// Convert from RAW8 to MONO8
-	Image convertedImage;
-	error = rawImage.Convert(PIXEL_FORMAT_MONO8, &convertedImage);
-	if (error != PGRERROR_OK)
-	{
-		cout << "Error converting frame to MONO8" << endl;
 		return;
 	}
 
@@ -164,7 +161,6 @@ void ofxgs3::setCameraType()
 
 void ofxgs3::cameraInitializationLogic()
 {
-	unsigned int camNum = this->getCameraBaseCount();
 	Error error;
 	BusManager busMgr;
 	PGRGuid pgrGuid;
@@ -180,16 +176,34 @@ void ofxgs3::cameraInitializationLogic()
 		return;
 	}
 
+	cout << "Connected camera with serial number: " << guid.Data1 << endl;
+
 	error = cam.StartCapture();
     if (error != PGRERROR_OK)
     {
 		error.PrintErrorTrace();
 		return;
     }
-	width = 2048;
-	height = 2048;
+
 	depth = 1;
+
+	Image capt;
+	capt.SetColorProcessing(NEAREST_NEIGHBOR);
+	error = cam.RetrieveBuffer(&capt);
+	if (error != PGRERROR_OK) {
+		error.PrintErrorTrace();
+		width = 2048;
+		height = 2048;
+		
+	} else {
+		width = capt.GetRows();
+		height = capt.GetCols();
+	}
 	
+	
+
+	cout << "GS3 Camera set to width:" << width << " height:" << height << endl;
+
 	for(int i = 0; i < cameraBaseSettings->propertyType.size(); i++) {
 		setCameraFeature(cameraBaseSettings->propertyType[i], cameraBaseSettings->propertyFirstValue[i], cameraBaseSettings->propertySecondValue[i], cameraBaseSettings->isPropertyAuto[i],
 			cameraBaseSettings->isPropertyOn[i]);
@@ -260,6 +274,7 @@ GUID* ofxgs3::getBaseCameraGuids(int* camCount)
 
 		error = busMgr.GetCameraSerialNumberFromIndex(i, &pSerialNumber);
 		GUID guid;
+		cout << "GS3 Serial Number: " << pSerialNumber << endl;
 		guid.Data1 = pSerialNumber;
 		guid.Data2 = guid.Data3 = 0;
 		memset((void*)guid.Data4, 0, 8 * sizeof(unsigned char));

@@ -493,94 +493,96 @@ int ofxMultiplexerManager::getCameraBaseCount()
 
 void ofxMultiplexerManager::enumerateCameras()
 {
-	for (int i=0;i<allowdedCameraTypes.size();i++)
+	ofxXmlSettings* xmlSettings = new ofxXmlSettings();
+	if (xmlSettings->loadFile("xml/multiplexer_settings.xml"))
 	{
-		if (allowdedCameraTypes[i] == GS3) {
+		xmlSettings->pushTag("MULTIPLEXER", 0);
+		xmlSettings->pushTag("CAMERAS", 0);
+		int numCamerasTags = xmlSettings->getNumTags("CAMERA");
+		for (int i=0;i<numCamerasTags;i++)
+		{
+			xmlSettings->pushTag("CAMERA", i);
+			GUID guid = StringToGUID(xmlSettings->getValue("GUID", "{00000000-0000-0000-0000-000000000000}"));
 			ofxCameraBase* cam = (ofxCameraBase*)(new ofxgs3());
-			int cameraCount = 0;
-			GUID* cameraGUIDs = cam->getBaseCameraGuids(&cameraCount);
-			for (int j = 0; j < cameraCount; j++) {
-				ofxCameraBase* newCam = (ofxCameraBase*)(new ofxgs3());
-				newCam->initializeWithGUID(cameraGUIDs[j]);
-				cameraBases.push_back(newCam);
-			}
-			delete cam;
+			cam->initializeWithGUID(guid);
+			cameraBases.push_back(cam);
 		}
-		if (allowdedCameraTypes[i] == PS3)
-		{
-			continue;
-			ofxCameraBase* cam = (ofxCameraBase*)(new ofxPS3());
-			int cameraCount = 0;
-			GUID* cameraGUIDs = cam->getBaseCameraGuids(&cameraCount);
-			for (int j=0;j<cameraCount;j++)
+			/*
+			for (int i=0;i<allowdedCameraTypes.size();i++)
 			{
-				ofxCameraBase* newCam = (ofxCameraBase*)(new ofxPS3());
-				newCam->initializeWithGUID(cameraGUIDs[j]);
-				cameraBases.push_back(newCam);
+				if (allowdedCameraTypes[i] == PS3)
+				{
+					ofxCameraBase* cam = (ofxCameraBase*)(new ofxPS3());
+					int cameraCount = 0;
+					GUID* cameraGUIDs = cam->getBaseCameraGuids(&cameraCount);
+					for (int j=0;j<cameraCount;j++)
+					{
+						ofxCameraBase* newCam = (ofxCameraBase*)(new ofxPS3());
+						newCam->initializeWithGUID(cameraGUIDs[j]);
+						cameraBases.push_back(newCam);
+					}
+					delete cam;
+				}
+				if (allowdedCameraTypes[i] == CMU)
+				{
+					ofxCameraBase* cam = (ofxCameraBase*)(new ofxCMUCamera());
+					int cameraCount = 0;
+					GUID* cameraGUIDs = cam->getBaseCameraGuids(&cameraCount);
+					for (int j=0;j<cameraCount;j++)
+					{
+						ofxCameraBase* newCam = (ofxCameraBase*)(new ofxCMUCamera());
+						newCam->initializeWithGUID(cameraGUIDs[j]);
+						cameraBases.push_back(newCam);
+					}
+					delete cam;
+				}
+				if (allowdedCameraTypes[i] == FFMV)
+				{
+					ofxCameraBase* cam = (ofxCameraBase*)(new ofxffmv());
+					int cameraCount = 0;
+					GUID* cameraGUIDs = cam->getBaseCameraGuids(&cameraCount);
+					for (int j=0;j<cameraCount;j++)
+					{
+						ofxCameraBase* newCam = (ofxCameraBase*)(new ofxffmv());
+						newCam->initializeWithGUID(cameraGUIDs[j]);
+						cameraBases.push_back(newCam);
+					}
+					delete cam;
+				}
+				if (allowdedCameraTypes[i] == KINECT)
+				{
+					ofxCameraBase* cam = (ofxCameraBase*)(new ofxKinect());
+					int cameraCount = 0;
+					GUID* cameraGUIDs = cam->getBaseCameraGuids(&cameraCount);
+					for (int j=0;j<cameraCount;j++)
+					{
+						ofxCameraBase* newCam = (ofxCameraBase*)(new ofxKinect());
+						newCam->initializeWithGUID(cameraGUIDs[j]);
+						cameraBases.push_back(newCam);
+					}
+					delete cam;
+				}
+				if (allowdedCameraTypes[i] == DIRECTSHOW)
+				{
+					ofxCameraBase* cam = (ofxCameraBase*)(new ofxDShow());
+					int cameraCount = 0;
+					GUID* cameraGUIDs = cam->getBaseCameraGuids(&cameraCount);
+					for (int j=0;j<cameraCount;j++)
+					{
+						ofxCameraBase* newCam = (ofxCameraBase*)(new ofxDShow());
+						newCam->initializeWithGUID(cameraGUIDs[j]);
+						cameraBases.push_back(newCam);
+					}
+					delete cam;
+				}
 			}
-			delete cam;
-		}
-		if (allowdedCameraTypes[i] == CMU)
+		}*/
+
+		for (int i=0;i<cameraBases.size();i++)
 		{
-			continue;
-			ofxCameraBase* cam = (ofxCameraBase*)(new ofxCMUCamera());
-			int cameraCount = 0;
-			GUID* cameraGUIDs = cam->getBaseCameraGuids(&cameraCount);
-			for (int j=0;j<cameraCount;j++)
-			{
-				ofxCameraBase* newCam = (ofxCameraBase*)(new ofxCMUCamera());
-				newCam->initializeWithGUID(cameraGUIDs[j]);
-				cameraBases.push_back(newCam);
-			}
-			delete cam;
+			cameraBases[i]->startCamera();
+			cameraBases[i]->pauseCamera();
 		}
-		if (allowdedCameraTypes[i] == FFMV)
-		{
-			continue;
-			ofxCameraBase* cam = (ofxCameraBase*)(new ofxffmv());
-			int cameraCount = 0;
-			GUID* cameraGUIDs = cam->getBaseCameraGuids(&cameraCount);
-			for (int j=0;j<cameraCount;j++)
-			{
-				ofxCameraBase* newCam = (ofxCameraBase*)(new ofxffmv());
-				newCam->initializeWithGUID(cameraGUIDs[j]);
-				cameraBases.push_back(newCam);
-			}
-			delete cam;
-		}
-		if (allowdedCameraTypes[i] == KINECT)
-		{
-			continue;
-			ofxCameraBase* cam = (ofxCameraBase*)(new ofxKinect());
-			int cameraCount = 0;
-			GUID* cameraGUIDs = cam->getBaseCameraGuids(&cameraCount);
-			for (int j=0;j<cameraCount;j++)
-			{
-				ofxCameraBase* newCam = (ofxCameraBase*)(new ofxKinect());
-				newCam->initializeWithGUID(cameraGUIDs[j]);
-				cameraBases.push_back(newCam);
-			}
-			delete cam;
-		}
-		if (allowdedCameraTypes[i] == DIRECTSHOW)
-		{
-			continue;
-			ofxCameraBase* cam = (ofxCameraBase*)(new ofxDShow());
-			int cameraCount = 0;
-			GUID* cameraGUIDs = cam->getBaseCameraGuids(&cameraCount);
-			for (int j=0;j<cameraCount;j++)
-			{
-				ofxCameraBase* newCam = (ofxCameraBase*)(new ofxDShow());
-				newCam->initializeWithGUID(cameraGUIDs[j]);
-				cameraBases.push_back(newCam);
-			}
-			delete cam;
-		}
-	}
-	for (int i=0;i<cameraBases.size();i++)
-	{
-		cameraBases[i]->startCamera();
-		cameraBases[i]->pauseCamera();
 	}
 }
 
