@@ -330,11 +330,7 @@ class videoInput{
 		char* getDevicePath( int id );
 
 		// get device count
-		#if (_MSC_VER >= 1500 && _MSC_VER < 1600) //checks for visual studio version
-			int getDeviceCount( bool bPure = false );
-		#else
-			int getDeviceCount(  );
-		#endif
+		int getDeviceCount( bool bPure = false );
 		
 		//number of devices available
 		int  devicesFound;
