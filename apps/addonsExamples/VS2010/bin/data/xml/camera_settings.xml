@@ -1,60 +1,44 @@
 <CAMERAS>
     <CAMERA>
         <SETTINGS>
-            <GUID>0</GUID>
-            <TYPE>DIRECTSHOW</TYPE>
-            <FRAME>
-                <RAW>0</RAW>
-                <WIDTH>320</WIDTH>
-                <HEIGHT>240</HEIGHT>
-                <LEFT>0</LEFT>
-                <TOP>0</TOP>
-            </FRAME>
-            <SENSOR>
-                <MODE>0</MODE>
-                <DEPTH>3</DEPTH>
-                <BRIGHTNESS>
-                    <VALUE>128</VALUE>
-                    <AUTO>0</AUTO>
-                </BRIGHTNESS>
-                <CONTRAST>
-                    <VALUE>32</VALUE>
-                    <AUTO>0</AUTO>
-                </CONTRAST>
-                <GAIN>
-                    <VALUE>33</VALUE>
-                    <AUTO>0</AUTO>
-                </GAIN>
-                <SATURATION>
-                    <VALUE>32</VALUE>
-                    <AUTO>0</AUTO>
-                </SATURATION>
-                <SHARPNESS>
-                    <VALUE>53</VALUE>
-                    <AUTO>0</AUTO>
-                </SHARPNESS>
-                <EXPOSURE>
-                    <VALUE>-5</VALUE>
-                    <AUTO>1</AUTO>
-                </EXPOSURE>
-                <FRAMERATE>15</FRAMERATE>
-            </SENSOR>
-        </SETTINGS>
-    </CAMERA>
-    <CAMERA>
-        <SETTINGS>
-            <GUID>15355946</GUID>
+            <GUID>15420197</GUID>
             <TYPE>GS3</TYPE>
+            <ENABLED>1</ENABLED>
             <FRAME>
                 <RAW>0</RAW>
-                <WIDTH>2048</WIDTH>
-                <HEIGHT>2048</HEIGHT>
+                <WIDTH>1024</WIDTH>
+                <HEIGHT>1024</HEIGHT>
                 <LEFT>0</LEFT>
                 <TOP>0</TOP>
             </FRAME>
             <SENSOR>
                 <MODE>0</MODE>
                 <DEPTH>1</DEPTH>
+                <FRAMERATE>100</FRAMERATE>
+                <BRIGHTNESS>
+                    <VALUE>200</VALUE>
+                    <AUTO>0</AUTO>
+                </BRIGHTNESS>
+                <EXPOSURE>
+                    <VALUE>22</VALUE>
+                    <AUTO>0</AUTO>
+                </EXPOSURE>
+                <SATURATION>
+                    <VALUE>0</VALUE>
+                    <AUTO>0</AUTO>
+                </SATURATION>
+                <GAMMA>
+                    <VALUE>1</VALUE>
+                    <AUTO>0</AUTO>
+                </GAMMA>
+                <SHUTTER>
+                    <VALUE>200</VALUE>
+                    <AUTO>0</AUTO>
+                </SHUTTER>
+                <GAIN>
+                    <VALUE>64</VALUE>
+                    <AUTO>0</AUTO>
+                </GAIN>
             </SENSOR>
         </SETTINGS>
     </CAMERA>
@@ -62,33 +46,85 @@
         <SETTINGS>
             <GUID>15307454</GUID>
             <TYPE>GS3</TYPE>
+            <ENABLED>1</ENABLED>
             <FRAME>
                 <RAW>0</RAW>
-                <WIDTH>2048</WIDTH>
-                <HEIGHT>2048</HEIGHT>
+                <WIDTH>1024</WIDTH>
+                <HEIGHT>1024</HEIGHT>
                 <LEFT>0</LEFT>
                 <TOP>0</TOP>
             </FRAME>
             <SENSOR>
                 <MODE>0</MODE>
                 <DEPTH>1</DEPTH>
+                <FRAMERATE>100</FRAMERATE>
+                <BRIGHTNESS>
+                    <VALUE>200</VALUE>
+                    <AUTO>0</AUTO>
+                </BRIGHTNESS>
+                <EXPOSURE>
+                    <VALUE>22</VALUE>
+                    <AUTO>0</AUTO>
+                </EXPOSURE>
+                <SATURATION>
+                    <VALUE>0</VALUE>
+                    <AUTO>0</AUTO>
+                </SATURATION>
+                <GAMMA>
+                    <VALUE>1</VALUE>
+                    <AUTO>0</AUTO>
+                </GAMMA>
+                <SHUTTER>
+                    <VALUE>200</VALUE>
+                    <AUTO>0</AUTO>
+                </SHUTTER>
+                <GAIN>
+                    <VALUE>64</VALUE>
+                    <AUTO>0</AUTO>
+                </GAIN>
             </SENSOR>
         </SETTINGS>
     </CAMERA>
     <CAMERA>
         <SETTINGS>
-            <GUID>15420197</GUID>
+            <GUID>15355946</GUID>
             <TYPE>GS3</TYPE>
+            <ENABLED>1</ENABLED>
             <FRAME>
                 <RAW>0</RAW>
-                <WIDTH>2048</WIDTH>
-                <HEIGHT>2048</HEIGHT>
+                <WIDTH>1024</WIDTH>
+                <HEIGHT>1024</HEIGHT>
                 <LEFT>0</LEFT>
                 <TOP>0</TOP>
             </FRAME>
             <SENSOR>
                 <MODE>0</MODE>
                 <DEPTH>1</DEPTH>
+                <FRAMERATE>100</FRAMERATE>
+                <BRIGHTNESS>
+                    <VALUE>200</VALUE>
+                    <AUTO>0</AUTO>
+                </BRIGHTNESS>
+                <EXPOSURE>
+                    <VALUE>22</VALUE>
+                    <AUTO>0</AUTO>
+                </EXPOSURE>
+                <SATURATION>
+                    <VALUE>0</VALUE>
+                    <AUTO>0</AUTO>
+                </SATURATION>
+                <GAMMA>
+                    <VALUE>1</VALUE>
+                    <AUTO>0</AUTO>
+                </GAMMA>
+                <SHUTTER>
+                    <VALUE>200</VALUE>
+                    <AUTO>0</AUTO>
+                </SHUTTER>
+                <GAIN>
+                    <VALUE>64</VALUE>
+                    <AUTO>0</AUTO>
+                </GAIN>
             </SENSOR>
         </SETTINGS>
     </CAMERA>

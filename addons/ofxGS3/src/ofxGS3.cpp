@@ -176,6 +176,58 @@ void ofxgs3::cameraInitializationLogic()
 		return;
 	}
 
+	Format7Info fmt7Info;
+    bool supported;
+    fmt7Info.mode = MODE_2;
+    error = cam.GetFormat7Info( &fmt7Info, &supported );
+    if (error != PGRERROR_OK)
+    {
+		error.PrintErrorTrace();
+        return;
+    }
+
+    Format7ImageSettings fmt7ImageSettings;
+    fmt7ImageSettings.mode = MODE_2;
+    fmt7ImageSettings.offsetX = 0;
+    fmt7ImageSettings.offsetY = 0;
+    fmt7ImageSettings.width = fmt7Info.maxWidth;
+    fmt7ImageSettings.height = fmt7Info.maxHeight;
+    fmt7ImageSettings.pixelFormat = PIXEL_FORMAT_RAW8;
+
+    bool valid;
+    Format7PacketInfo fmt7PacketInfo;
+
+    // Validate the settings to make sure that they are valid
+    error = cam.ValidateFormat7Settings(
+        &fmt7ImageSettings,
+        &valid,
+        &fmt7PacketInfo );
+    if (error != PGRERROR_OK)
+    {
+		error.PrintErrorTrace();
+        return;
+    }
+
+    if ( !valid )
+    {
+        // Settings are not valid
+		cout << "Format7 settings are not valid" << endl; 
+        return;
+    }
+
+    // Set the settings to the camera
+    error = cam.SetFormat7Configuration(
+        &fmt7ImageSettings,
+		//    fmt7PacketInfo.recommendedBytesPerPacket );
+		fmt7PacketInfo.maxBytesPerPacket
+    );
+    
+    if (error != PGRERROR_OK)
+    {
+		error.PrintErrorTrace();
+        return;
+    }
+
 	cout << "Connected camera with serial number: " << guid.Data1 << endl;
 
 	error = cam.StartCapture();
@@ -190,18 +242,33 @@ void ofxgs3::cameraInitializationLogic()
 	Image capt;
 	capt.SetColorProcessing(NEAREST_NEIGHBOR);
 	error = cam.RetrieveBuffer(&capt);
+	
+	// Set width/height.
+	PixelFormat pxFormat;
+	unsigned int rows, cols, stride;
+	capt.GetDimensions(&rows, &cols, &stride, &pxFormat);
 	if (error != PGRERROR_OK) {
 		error.PrintErrorTrace();
 		width = 2048;
 		height = 2048;
-		
 	} else {
-		width = capt.GetRows();
-		height = capt.GetCols();
+		width = rows;
+		height = cols;
 	}
 	
-	
+	// Retrieve frame rate property
+    Property frmRate;
+    frmRate.type = FRAME_RATE;
+    error = cam.GetProperty( &frmRate );
+    if (error != PGRERROR_OK)
+    {
+		error.PrintErrorTrace();
+		return;
+    }
 
+	cout << "Proposed framerate is " << framerate << " fps" << endl;
+    cout << "Actual frame rate is " << fixed << setprecision(2) << frmRate.absValue << " fps" << endl; 
+	
 	cout << "GS3 Camera set to width:" << width << " height:" << height << endl;
 
 	for(int i = 0; i < cameraBaseSettings->propertyType.size(); i++) {

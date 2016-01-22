@@ -139,7 +139,7 @@
             <HEIGHT>10.000000</HEIGHT>
             <DISPLAY>2</DISPLAY>
             <STEPS>0</STEPS>
-            <VALUE>0</VALUE>
+            <VALUE>1</VALUE>
         </OBJECT>
         <OBJECT>
             <ID>7</ID>
@@ -246,7 +246,7 @@
         <NAME>Input</NAME>
         <LEFT>251.000000</LEFT>
         <TOP>280.000000</TOP>
-        <WIDTH>315.000000</WIDTH>
+        <WIDTH>630.000000</WIDTH>
         <HEIGHT>65.000000</HEIGHT>
         <DISPLAY>2</DISPLAY>
         <STEPS>0</STEPS>
@@ -311,7 +311,7 @@
         <NAME>Output</NAME>
         <LEFT>586.000000</LEFT>
         <TOP>280.000000</TOP>
-        <WIDTH>315.000000</WIDTH>
+        <WIDTH>630.000000</WIDTH>
         <HEIGHT>65.000000</HEIGHT>
         <DISPLAY>2</DISPLAY>
         <STEPS>0</STEPS>

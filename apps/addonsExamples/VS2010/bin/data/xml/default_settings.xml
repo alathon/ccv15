@@ -1,29 +1,4 @@
 <CAMERAS>
-	<CAMERA>
-        <SETTINGS>
-            <TYPE>GS3</TYPE>
-            <FRAME>
-                <WIDTH>2048</WIDTH>
-                <HEIGHT>2048</HEIGHT>
-                <LEFT>0</LEFT>
-                <TOP>0</TOP>
-				<RAW>0</RAW>
-            </FRAME>
-            <SENSOR>
-                <MODE>0</MODE>
-                <DEPTH>1</DEPTH>
-                <GAIN>
-					<AUTO>0</AUTO>			
-					<VALUE>16</VALUE>
-				</GAIN>
-                <EXPOSURE>
-					<AUTO>0</AUTO>
-					<VALUE>100</VALUE>	
-				</EXPOSURE>
-                <FRAMERATE>60</FRAMERATE>
-            </SENSOR>
-        </SETTINGS>
-    </CAMERA>
     <CAMERA>
         <SETTINGS>
             <TYPE>PS3</TYPE>
@@ -63,6 +38,43 @@
             	<MODE>0</MODE>
                 <DEPTH>3</DEPTH>
                 <FRAMERATE>15</FRAMERATE>
+            </SENSOR>
+        </SETTINGS>
+    </CAMERA>
+	<CAMERA>
+        <SETTINGS>
+            <TYPE>GS3</TYPE>
+            <FRAME>
+                <WIDTH>2048</WIDTH>
+                <HEIGHT>2048</HEIGHT>
+                <LEFT>0</LEFT>
+                <TOP>0</TOP>
+		<RAW>0</RAW>
+            </FRAME>
+            <SENSOR>
+            	<MODE>0</MODE>
+                <DEPTH>1</DEPTH>
+                <FRAMERATE>100</FRAMERATE>
+		<BRIGHTNESS>
+			<AUTO>0</AUTO>
+			<VALUE>34</VALUE>
+		</BRIGHTNESS>
+		<EXPOSURE>
+			<AUTO>0</AUTO>
+			<VALUE>40</VALUE>
+		</EXPOSURE>
+		<GAIN>
+			<AUTO>0</AUTO>
+			<VALUE>64</VALUE>
+		</GAIN>
+		<GAMMA>
+			<AUTO>0</AUTO>
+			<VALUE>1</VALUE>
+		</GAMMA>
+		<SHUTTER>
+			<AUTO>0</AUTO>
+			<VALUE>867</VALUE>
+		</SHUTTER>
             </SENSOR>
         </SETTINGS>
     </CAMERA>
