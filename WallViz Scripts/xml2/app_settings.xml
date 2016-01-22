@@ -18,18 +18,6 @@ Can now use VIDEO or CAMERA MULTIPLEXER MODES.
         <WIDTH>1024</WIDTH>
         <HEIGHT>1024</HEIGHT>
         <FRAMERATE>100</FRAMERATE>
-        <!-- 
-		Setup CAMERATYPES that will be used. 
-		If you do not want to use a specific camera type - use 0, otherwise 1.
-		 -->
-        <CAMERATYPES>
-            <PS3>0</PS3>
-            <FFMV>0</FFMV>
-            <KINECT>0</KINECT>
-            <CMU>0</CMU>
-            <DIRECTSHOW>0</DIRECTSHOW>
-			<GS3>1</GS3>
-        </CAMERATYPES>
     </MULTIPLEXER>
     <VIDEO>
         <FILENAME>videos/RearDI.m4v</FILENAME>

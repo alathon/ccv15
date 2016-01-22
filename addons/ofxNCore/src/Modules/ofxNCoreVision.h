@@ -318,7 +318,6 @@ public:
 		ofxMultiplexer* multiplexer; 
 	#endif
     ofVideoPlayer*	vidPlayer;
-	vector<CAMERATYPE> supportedCameraTypes;
 	ofxMultiplexerManager* multiplexerManager;
 	/****************************************************************
 	 *            Variables in xml/app_settings.xml Settings file

@@ -12,6 +12,13 @@
 
 ofxMultiplexerManager::ofxMultiplexerManager()
 {
+	CameraTypes.insert(CameraTypePair("PS3", PS3));
+	CameraTypes.insert(CameraTypePair("KINECT", KINECT));
+	CameraTypes.insert(CameraTypePair("DIRECTSHOW", DIRECTSHOW));
+	CameraTypes.insert(CameraTypePair("GS3", GS3));
+	CameraTypes.insert(CameraTypePair("FFMV", FFMV));
+	CameraTypes.insert(CameraTypePair("CMU", CMU));
+
 	cameraMultiplexer = NULL;
 	calibration = NULL;
 	filters = NULL;
@@ -292,18 +299,6 @@ void ofxMultiplexerManager::pauseAllUnusedCameras()
 	}
 }
 
-void ofxMultiplexerManager::addAllowdedCameraType(CAMERATYPE cameraType)
-{
-	bool isNew = true;
-	for (int i=0;i<allowdedCameraTypes.size();i++)
-		if (allowdedCameraTypes[i] == cameraType)
-		{
-			isNew = false;
-			break;
-		}
-	if (isNew)
-		allowdedCameraTypes.push_back(cameraType);
-}
 void ofxMultiplexerManager::readSettingsFromXML(char* fileName)
 {
 	ofxXmlSettings* xmlSettings = new ofxXmlSettings();
@@ -317,56 +312,53 @@ void ofxMultiplexerManager::readSettingsFromXML(char* fileName)
 		xmlSettings->pushTag("MULTIPLEXER", 0);
 		xmlSettings->pushTag("CAMERAS", 0);
 		int numCamerasTags = xmlSettings->getNumTags("CAMERA");
-		//if (numCamerasTags==cameraGridWidth*cameraGridHeight)
+		for (int i=0;i<numCamerasTags;i++)
 		{
-			for (int i=0;i<numCamerasTags;i++)
+			ofxCameraBaseCalibration* cameraBaseCalibration = new ofxCameraBaseCalibration();
+			cameraBaseCalibration->camera = NULL;
+			xmlSettings->pushTag("CAMERA", i);
+			std::string cameraTypeName = xmlSettings->getValue("TYPE", "NONE");
+			GUID newGuid = StringToGUID(xmlSettings->getValue("GUID", "{00000000-0000-0000-0000-000000000000}"));
+			for (int j=0;j<cameraBases.size();j++)
 			{
-				ofxCameraBaseCalibration* cameraBaseCalibration = new ofxCameraBaseCalibration();
-				cameraBaseCalibration->camera = NULL;
-				xmlSettings->pushTag("CAMERA", i);
-				std::string cameraTypeName = xmlSettings->getValue("TYPE", "NONE");
-				GUID newGuid = StringToGUID(xmlSettings->getValue("GUID", "{00000000-0000-0000-0000-000000000000}"));
-				for (int j=0;j<cameraBases.size();j++)
+				if ((cameraTypeName == cameraBases[j]->getBaseCameraTypeName()) && (newGuid == cameraBases[j]->getBaseCameraGuid()))
 				{
-					if ((cameraTypeName == cameraBases[j]->getBaseCameraTypeName()) && (newGuid == cameraBases[j]->getBaseCameraGuid()))
-					{
-						cameraBaseCalibration->camera = cameraBases[j];
-					}
+					cameraBaseCalibration->camera = cameraBases[j];
 				}
-				cameraBaseCalibration->index = 	xmlSettings->getValue("INDEX", i);
-				xmlSettings->pushTag("POINTARRAY", 0);
-				int numPointTags = xmlSettings->getNumTags("POINT");
-
-				int calibrationPointWidth = calibrationGridWidth + 1;
-				int calibrationPointHeight = calibrationGridHeight + 1;
-			
-				float cameraCellWidth = 1.0f / calibrationGridWidth;
-				float cameraCellHeight = 1.0f / calibrationGridHeight;
-				
-				for (int j = 0;j<calibrationPointWidth*calibrationPointHeight;j++)
-				{
-					if (numPointTags==calibrationPointWidth*calibrationPointHeight)
-						xmlSettings->pushTag("POINT", j);
-					vector2df newPoint;
-					newPoint.X = xmlSettings->getValue("X",cameraCellWidth * (j%(calibrationGridWidth+1)));
-					newPoint.Y = xmlSettings->getValue("Y",cameraCellHeight * (j/(calibrationGridWidth+1)));
-					cameraBaseCalibration->calibrationPoints.push_back(newPoint);
-					if (numPointTags==calibrationPointWidth*calibrationPointHeight)
-						xmlSettings->popTag();
-				}
-				xmlSettings->popTag();
-
-				xmlSettings->popTag();
-				if (cameraBaseCalibration->camera != NULL)
-					cameraBasesCalibration.push_back(cameraBaseCalibration);
 			}
+			cameraBaseCalibration->index = 	xmlSettings->getValue("INDEX", i);
+			xmlSettings->pushTag("POINTARRAY", 0);
+			int numPointTags = xmlSettings->getNumTags("POINT");
 
+			int calibrationPointWidth = calibrationGridWidth + 1;
+			int calibrationPointHeight = calibrationGridHeight + 1;
+			
+			float cameraCellWidth = 1.0f / calibrationGridWidth;
+			float cameraCellHeight = 1.0f / calibrationGridHeight;
+				
+			for (int j = 0;j<calibrationPointWidth*calibrationPointHeight;j++)
+			{
+				if (numPointTags==calibrationPointWidth*calibrationPointHeight)
+					xmlSettings->pushTag("POINT", j);
+				vector2df newPoint;
+				newPoint.X = xmlSettings->getValue("X",cameraCellWidth * (j%(calibrationGridWidth+1)));
+				newPoint.Y = xmlSettings->getValue("Y",cameraCellHeight * (j/(calibrationGridWidth+1)));
+				cameraBaseCalibration->calibrationPoints.push_back(newPoint);
+				if (numPointTags==calibrationPointWidth*calibrationPointHeight)
+					xmlSettings->popTag();
+			}
+			xmlSettings->popTag();
+
+			xmlSettings->popTag();
+			if (cameraBaseCalibration->camera != NULL)
+				cameraBasesCalibration.push_back(cameraBaseCalibration);
 		}
 	}
 	xmlSettings->popTag();
 	xmlSettings->popTag();
 	delete xmlSettings;
 }
+
 void ofxMultiplexerManager::saveSettingsToXML(char* fileName)
 {
 	ofxXmlSettings*	xmlSettings = new ofxXmlSettings();
@@ -502,81 +494,42 @@ void ofxMultiplexerManager::enumerateCameras()
 		for (int i=0;i<numCamerasTags;i++)
 		{
 			xmlSettings->pushTag("CAMERA", i);
+			ofxCameraBase* cam = NULL;
 			GUID guid = StringToGUID(xmlSettings->getValue("GUID", "{00000000-0000-0000-0000-000000000000}"));
-			ofxCameraBase* cam = (ofxCameraBase*)(new ofxgs3());
-			cam->initializeWithGUID(guid);
-			cameraBases.push_back(cam);
-		}
-			/*
-			for (int i=0;i<allowdedCameraTypes.size();i++)
-			{
-				if (allowdedCameraTypes[i] == PS3)
-				{
-					ofxCameraBase* cam = (ofxCameraBase*)(new ofxPS3());
-					int cameraCount = 0;
-					GUID* cameraGUIDs = cam->getBaseCameraGuids(&cameraCount);
-					for (int j=0;j<cameraCount;j++)
-					{
-						ofxCameraBase* newCam = (ofxCameraBase*)(new ofxPS3());
-						newCam->initializeWithGUID(cameraGUIDs[j]);
-						cameraBases.push_back(newCam);
-					}
-					delete cam;
-				}
-				if (allowdedCameraTypes[i] == CMU)
-				{
-					ofxCameraBase* cam = (ofxCameraBase*)(new ofxCMUCamera());
-					int cameraCount = 0;
-					GUID* cameraGUIDs = cam->getBaseCameraGuids(&cameraCount);
-					for (int j=0;j<cameraCount;j++)
-					{
-						ofxCameraBase* newCam = (ofxCameraBase*)(new ofxCMUCamera());
-						newCam->initializeWithGUID(cameraGUIDs[j]);
-						cameraBases.push_back(newCam);
-					}
-					delete cam;
-				}
-				if (allowdedCameraTypes[i] == FFMV)
-				{
-					ofxCameraBase* cam = (ofxCameraBase*)(new ofxffmv());
-					int cameraCount = 0;
-					GUID* cameraGUIDs = cam->getBaseCameraGuids(&cameraCount);
-					for (int j=0;j<cameraCount;j++)
-					{
-						ofxCameraBase* newCam = (ofxCameraBase*)(new ofxffmv());
-						newCam->initializeWithGUID(cameraGUIDs[j]);
-						cameraBases.push_back(newCam);
-					}
-					delete cam;
-				}
-				if (allowdedCameraTypes[i] == KINECT)
-				{
-					ofxCameraBase* cam = (ofxCameraBase*)(new ofxKinect());
-					int cameraCount = 0;
-					GUID* cameraGUIDs = cam->getBaseCameraGuids(&cameraCount);
-					for (int j=0;j<cameraCount;j++)
-					{
-						ofxCameraBase* newCam = (ofxCameraBase*)(new ofxKinect());
-						newCam->initializeWithGUID(cameraGUIDs[j]);
-						cameraBases.push_back(newCam);
-					}
-					delete cam;
-				}
-				if (allowdedCameraTypes[i] == DIRECTSHOW)
-				{
-					ofxCameraBase* cam = (ofxCameraBase*)(new ofxDShow());
-					int cameraCount = 0;
-					GUID* cameraGUIDs = cam->getBaseCameraGuids(&cameraCount);
-					for (int j=0;j<cameraCount;j++)
-					{
-						ofxCameraBase* newCam = (ofxCameraBase*)(new ofxDShow());
-						newCam->initializeWithGUID(cameraGUIDs[j]);
-						cameraBases.push_back(newCam);
-					}
-					delete cam;
-				}
+			std::string camTypeStr = xmlSettings->getValue("TYPE", "NONE");
+
+			if(camTypeStr == "NONE") {
+				continue;
 			}
-		}*/
+
+			switch (CameraTypes[camTypeStr]) {
+				case PS3:
+					cam = (ofxCameraBase*)(new ofxPS3());
+					break;
+				case CMU:
+					cam = (ofxCameraBase*)(new ofxCMUCamera());
+					break;
+				case FFMV:
+					cam = (ofxCameraBase*)(new ofxffmv());
+					break;
+				case GS3:
+					cam = (ofxCameraBase*)(new ofxgs3());
+					break;
+				case DIRECTSHOW:
+					cam = (ofxCameraBase*)(new ofxDShow());
+					break;
+				case KINECT:
+					cam = (ofxCameraBase*)(new ofxKinect());
+					break;
+				default:
+					cam = NULL;
+			}
+
+			if(cam != NULL) {
+				cam->initializeWithGUID(guid);
+				cameraBases.push_back(cam);
+			}
+		}
 
 		for (int i=0;i<cameraBases.size();i++)
 		{

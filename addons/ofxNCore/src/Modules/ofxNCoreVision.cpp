@@ -171,18 +171,7 @@ void ofxNCoreVision::loadXMLSettings()
 	myTUIO.width = camWidth;
 	myTUIO.height = camHeight;
 	camRate						= XML.getValue("CONFIG:MULTIPLEXER:FRAMERATE", 0);
-	if (XML.getValue("CONFIG:MULTIPLEXER:CAMERATYPES:PS3", 0))
-		supportedCameraTypes.push_back(PS3);
-	if (XML.getValue("CONFIG:MULTIPLEXER:CAMERATYPES:CMU", 0))
-		supportedCameraTypes.push_back(CMU);
-	if (XML.getValue("CONFIG:MULTIPLEXER:CAMERATYPES:FFMV", 0))
-		supportedCameraTypes.push_back(FFMV);
-	if (XML.getValue("CONFIG:MULTIPLEXER:CAMERATYPES:KINECT", 0))
-		supportedCameraTypes.push_back(KINECT);
-	if (XML.getValue("CONFIG:MULTIPLEXER:CAMERATYPES:GS3", 0))
-		supportedCameraTypes.push_back(GS3);
-	if (XML.getValue("CONFIG:MULTIPLEXER:CAMERATYPES:DIRECTSHOW", 0))
-		supportedCameraTypes.push_back(DIRECTSHOW);
+
 	videoFileName				= XML.getValue("CONFIG:VIDEO:FILENAME", "test_videos/RearDI.m4v");
 	bcamera						= XML.getValue("CONFIG:SOURCE","VIDEO") == "MULTIPLEXER";
 	maxBlobs					= XML.getValue("CONFIG:BLOBS:MAXNUMBER", 20);
@@ -256,46 +245,6 @@ void ofxNCoreVision::saveSettings()
 	XML.setValue("CONFIG:MULTIPLEXER:WIDTH", (int)camWidth);
 	XML.setValue("CONFIG:MULTIPLEXER:HEIGHT", (int)camHeight);
 	XML.setValue("CONFIG:MULTIPLEXER:FRAMERATE", camRate);
-	int isSupported = 0;
-	for (int i=0;i<supportedCameraTypes.size();i++)
-		if (supportedCameraTypes[i] == PS3)
-		{
-			isSupported = 1;
-			break;
-		}
-	XML.setValue("CONFIG:MULTIPLEXER:CAMERATYPES:PS3", isSupported);
-	isSupported = 0;
-	for (int i=0;i<supportedCameraTypes.size();i++)
-		if (supportedCameraTypes[i] == CMU)
-		{
-			isSupported = 1;
-			break;
-		}
-	XML.setValue("CONFIG:MULTIPLEXER:CAMERATYPES:CMU", isSupported);
-	isSupported = 0;
-	for (int i=0;i<supportedCameraTypes.size();i++)
-		if (supportedCameraTypes[i] == FFMV)
-		{
-			isSupported = 1;
-			break;
-		}
-	XML.setValue("CONFIG:MULTIPLEXER:CAMERATYPES:FFMV", isSupported);
-	isSupported = 0;
-	for (int i=0;i<supportedCameraTypes.size();i++)
-		if (supportedCameraTypes[i] == KINECT)
-		{
-			isSupported = 1;
-			break;
-		}
-	XML.setValue("CONFIG:MULTIPLEXER:CAMERATYPES:KINECT", isSupported);
-	isSupported = 0;
-	for (int i=0;i<supportedCameraTypes.size();i++)
-		if (supportedCameraTypes[i] == DIRECTSHOW)
-		{
-			isSupported = 1;
-			break;
-		}
-	XML.setValue("CONFIG:MULTIPLEXER:CAMERATYPES:DIRECTSHOW", isSupported);
 	XML.setValue("CONFIG:SOURCE", bcamera ? "MULTIPLEXER" : "VIDEO");
 	XML.setValue("CONFIG:BOOLEAN:PRESSURE",bShowPressure);
 	XML.setValue("CONFIG:BOOLEAN:LABELS",bShowLabels);
@@ -350,10 +299,6 @@ void ofxNCoreVision::initDevice()
 	{
 		#ifdef TARGET_WIN32
 		multiplexerManager = new ofxMultiplexerManager();
-		for (int i=0;i<supportedCameraTypes.size();i++)
-		{
-			multiplexerManager->addAllowdedCameraType(supportedCameraTypes[i]);
-		}
 		multiplexer = new ofxMultiplexer();
 		multiplexerManager->setMultiplexerSize(camWidth,camHeight);
 		multiplexerManager->setCalibrator(&calib);

@@ -22,6 +22,8 @@
 #include "Filters\Filters.h"
 #include "Calibration.h"
 
+typedef map<string, CAMERATYPE> CameraTypeMap;
+typedef pair<string, CAMERATYPE> CameraTypePair;
 
 class ofxMultiplexerManager
 {
@@ -45,7 +47,6 @@ public:
 	void setMultiplexerSize(int width,int height);
 	void setCameraGridSize(int width,int height);
 	void setCalibratonGridSize(int width,int height);
-	void addAllowdedCameraType(CAMERATYPE cameraType);
 	void addCameraBaseToMultiplexerAtPosition(int position,ofxCameraBase* cameraBase);
 	void removeCameraBaseFromMultiplexerAtPosition(int position);
 	void removeAllCameraBasesFromMultiplexer();
@@ -67,6 +68,7 @@ private:
 	void enumerateCameras();
 private:
 	ofxMultiplexer* cameraMultiplexer;
+	CameraTypeMap CameraTypes;
 	Calibration* calibration;
 	Filters* filters;
 	int stitchedFrameWidth,stitchedFrameHeight;
@@ -75,7 +77,6 @@ private:
 	bool interleaveMode,needToUpdateBackground;
 	std::vector<ofxCameraBase* > cameraBases;
 	std::vector<ofxCameraBaseCalibration* > cameraBasesCalibration;
-	std::vector<CAMERATYPE> allowdedCameraTypes;
 	bool isMultiplexerNeedToUpdate;
 };
 
