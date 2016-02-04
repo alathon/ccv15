@@ -259,6 +259,7 @@ void ofxgs3::cameraInitializationLogic()
 	// Retrieve frame rate property
     Property frmRate;
     frmRate.type = FRAME_RATE;
+	
     error = cam.GetProperty( &frmRate );
     if (error != PGRERROR_OK)
     {
@@ -269,6 +270,29 @@ void ofxgs3::cameraInitializationLogic()
 	cout << "Proposed framerate is " << framerate << " fps" << endl;
     cout << "Actual frame rate is " << fixed << setprecision(2) << frmRate.absValue << " fps" << endl; 
 	
+	cout << "Trying to set 100FPS" << endl;
+
+	Property fps2;
+	fps2.type = FRAME_RATE;
+	fps2.absValue = 100;
+
+	error = cam.SetProperty( &fps2 );
+	if (error != PGRERROR_OK)
+    {
+		error.PrintErrorTrace();
+		return;
+    }
+
+    error = cam.GetProperty( &frmRate );
+    if (error != PGRERROR_OK)
+    {
+		error.PrintErrorTrace();
+		return;
+    }
+
+	cout << "Proposed framerate is " << framerate << " fps" << endl;
+    cout << "Actual frame rate is " << fixed << setprecision(2) << frmRate.absValue << " fps" << endl; 
+
 	cout << "GS3 Camera set to width:" << width << " height:" << height << endl;
 
 	for(int i = 0; i < cameraBaseSettings->propertyType.size(); i++) {
