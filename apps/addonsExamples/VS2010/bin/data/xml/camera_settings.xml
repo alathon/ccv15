@@ -49,8 +49,8 @@
             <ENABLED>1</ENABLED>
             <FRAME>
                 <RAW>0</RAW>
-                <WIDTH>1024</WIDTH>
-                <HEIGHT>1024</HEIGHT>
+                <WIDTH>900</WIDTH>
+                <HEIGHT>896</HEIGHT>
                 <LEFT>0</LEFT>
                 <TOP>0</TOP>
             </FRAME>

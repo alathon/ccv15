@@ -6,8 +6,8 @@
 			<ENABLED>1</ENABLED>
 			<FRAME>
 				<RAW>0</RAW>
-				<WIDTH>1024</WIDTH>
-				<HEIGHT>1024</HEIGHT>
+				<WIDTH>512</WIDTH>
+				<HEIGHT>512</HEIGHT>
 				<LEFT>0</LEFT>
 				<TOP>0</TOP>
 			</FRAME>
@@ -16,11 +16,11 @@
 				<DEPTH>1</DEPTH>
 				<FRAMERATE>100</FRAMERATE>
 				<BRIGHTNESS>
-					<VALUE>200</VALUE>
+					<VALUE>52</VALUE>
 					<AUTO>0</AUTO>
 				</BRIGHTNESS>
 				<EXPOSURE>
-					<VALUE>22</VALUE>
+					<VALUE>232</VALUE>
 					<AUTO>0</AUTO>
 				</EXPOSURE>
 				<SATURATION>
@@ -28,15 +28,15 @@
 					<AUTO>0</AUTO>
 				</SATURATION>
 				<GAMMA>
-					<VALUE>1</VALUE>
+					<VALUE>1280</VALUE>
 					<AUTO>0</AUTO>
 				</GAMMA>
 				<SHUTTER>
-					<VALUE>200</VALUE>
+					<VALUE>922</VALUE>
 					<AUTO>0</AUTO>
 				</SHUTTER>
 				<GAIN>
-					<VALUE>64</VALUE>
+					<VALUE>7</VALUE>
 					<AUTO>0</AUTO>
 				</GAIN>
 			</SENSOR>
@@ -49,8 +49,8 @@
 			<ENABLED>1</ENABLED>
 			<FRAME>
 				<RAW>0</RAW>
-				<WIDTH>1024</WIDTH>
-				<HEIGHT>1024</HEIGHT>
+				<WIDTH>512</WIDTH>
+				<HEIGHT>512</HEIGHT>
 				<LEFT>0</LEFT>
 				<TOP>0</TOP>
 			</FRAME>
@@ -59,11 +59,11 @@
 				<DEPTH>1</DEPTH>
 				<FRAMERATE>100</FRAMERATE>
 				<BRIGHTNESS>
-					<VALUE>200</VALUE>
+					<VALUE>52</VALUE>
 					<AUTO>0</AUTO>
 				</BRIGHTNESS>
 				<EXPOSURE>
-					<VALUE>22</VALUE>
+					<VALUE>232</VALUE>
 					<AUTO>0</AUTO>
 				</EXPOSURE>
 				<SATURATION>
@@ -71,15 +71,15 @@
 					<AUTO>0</AUTO>
 				</SATURATION>
 				<GAMMA>
-					<VALUE>1</VALUE>
+					<VALUE>1280</VALUE>
 					<AUTO>0</AUTO>
 				</GAMMA>
 				<SHUTTER>
-					<VALUE>200</VALUE>
+					<VALUE>922</VALUE>
 					<AUTO>0</AUTO>
 				</SHUTTER>
 				<GAIN>
-					<VALUE>64</VALUE>
+					<VALUE>7</VALUE>
 					<AUTO>0</AUTO>
 				</GAIN>
 			</SENSOR>
@@ -92,8 +92,8 @@
 			<ENABLED>1</ENABLED>
 			<FRAME>
 				<RAW>0</RAW>
-				<WIDTH>1024</WIDTH>
-				<HEIGHT>1024</HEIGHT>
+				<WIDTH>512</WIDTH>
+				<HEIGHT>512</HEIGHT>
 				<LEFT>0</LEFT>
 				<TOP>0</TOP>
 			</FRAME>
@@ -102,11 +102,11 @@
 				<DEPTH>1</DEPTH>
 				<FRAMERATE>100</FRAMERATE>
 				<BRIGHTNESS>
-					<VALUE>200</VALUE>
+					<VALUE>52</VALUE>
 					<AUTO>0</AUTO>
 				</BRIGHTNESS>
 				<EXPOSURE>
-					<VALUE>22</VALUE>
+					<VALUE>232</VALUE>
 					<AUTO>0</AUTO>
 				</EXPOSURE>
 				<SATURATION>
@@ -114,15 +114,15 @@
 					<AUTO>0</AUTO>
 				</SATURATION>
 				<GAMMA>
-					<VALUE>1</VALUE>
+					<VALUE>1280</VALUE>
 					<AUTO>0</AUTO>
 				</GAMMA>
 				<SHUTTER>
-					<VALUE>200</VALUE>
+					<VALUE>922</VALUE>
 					<AUTO>0</AUTO>
 				</SHUTTER>
 				<GAIN>
-					<VALUE>64</VALUE>
+					<VALUE>7</VALUE>
 					<AUTO>0</AUTO>
 				</GAIN>
 			</SENSOR>

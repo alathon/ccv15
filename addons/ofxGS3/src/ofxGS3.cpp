@@ -178,7 +178,7 @@ void ofxgs3::cameraInitializationLogic()
 
 	Format7Info fmt7Info;
     bool supported;
-    fmt7Info.mode = MODE_2;
+    fmt7Info.mode = MODE_0;
     error = cam.GetFormat7Info( &fmt7Info, &supported );
     if (error != PGRERROR_OK)
     {
@@ -187,12 +187,12 @@ void ofxgs3::cameraInitializationLogic()
     }
 
     Format7ImageSettings fmt7ImageSettings;
-    fmt7ImageSettings.mode = MODE_2;
+    fmt7ImageSettings.mode = MODE_0;
     fmt7ImageSettings.offsetX = 0;
     fmt7ImageSettings.offsetY = 0;
-    fmt7ImageSettings.width = fmt7Info.maxWidth;
-    fmt7ImageSettings.height = fmt7Info.maxHeight;
-    fmt7ImageSettings.pixelFormat = PIXEL_FORMAT_RAW8;
+    fmt7ImageSettings.width = 896; //fmt7Info.maxWidth;
+    fmt7ImageSettings.height = 900; //fmt7Info.maxHeight;
+    fmt7ImageSettings.pixelFormat = PIXEL_FORMAT_MONO8;
 
     bool valid;
     Format7PacketInfo fmt7PacketInfo;
@@ -249,8 +249,8 @@ void ofxgs3::cameraInitializationLogic()
 	capt.GetDimensions(&rows, &cols, &stride, &pxFormat);
 	if (error != PGRERROR_OK) {
 		error.PrintErrorTrace();
-		width = 2048;
-		height = 2048;
+		width = 896;
+		height = 900;
 	} else {
 		width = rows;
 		height = cols;
@@ -266,9 +266,10 @@ void ofxgs3::cameraInitializationLogic()
 		error.PrintErrorTrace();
 		return;
     }
-
+		
 	cout << "Proposed framerate is " << framerate << " fps" << endl;
     cout << "Actual frame rate is " << fixed << setprecision(2) << frmRate.absValue << " fps" << endl; 
+	
 	
 	cout << "Trying to set 100FPS" << endl;
 
@@ -294,6 +295,118 @@ void ofxgs3::cameraInitializationLogic()
     cout << "Actual frame rate is " << fixed << setprecision(2) << frmRate.absValue << " fps" << endl; 
 
 	cout << "GS3 Camera set to width:" << width << " height:" << height << endl;
+
+	
+
+	Property exp;
+	exp.type = AUTO_EXPOSURE;
+	exp.autoManualMode = true;
+	exp.onOff = false;
+	exp.onePush = false;
+	exp.absControl = true;
+	//exp.absValue = -0.385;
+	cam.SetProperty( & exp);
+
+	exp.type = BRIGHTNESS;
+	exp.autoManualMode = false;
+	exp.onOff = true;
+	exp.onePush = false;
+	exp.absControl = true;
+	exp.absValue = 0;
+	cam.SetProperty( & exp);
+
+	exp.type = GAIN;
+	exp.absValue = 0.0;
+	exp.autoManualMode = false;
+	exp.onOff = true;
+	exp.onePush = false;
+	exp.absControl = true;
+	cam.SetProperty( & exp);
+
+	exp.type = SHUTTER;
+	//exp.absValue = 9.904;
+	exp.autoManualMode = true;
+	exp.onOff = false;
+	exp.onePush = false;
+	exp.absControl = true;
+	cam.SetProperty ( & exp);
+
+	exp.type = SHARPNESS;
+	exp.autoManualMode = true;
+	exp.onOff = false;
+	exp.onePush = false;
+	exp.absControl = true;
+	//exp.absValue = 797;
+	cam.SetProperty ( & exp);
+
+	exp.type = GAMMA;
+	exp.autoManualMode = true;
+	exp.onOff = true;
+	exp.onePush = false;
+	exp.absControl = true;
+	//exp.absValue = 797;
+	cam.SetProperty ( & exp);
+
+	exp.type = FRAME_RATE;
+	exp.absValue = 100.0;
+	exp.absControl = true;
+	exp.autoManualMode = false;
+	exp.onePush = false;
+	exp.onOff = true;
+	cam.SetProperty( & exp);
+	error = cam.SetProperty(&exp);
+
+
+	Property bright;
+	bright.type = BRIGHTNESS;
+	error = cam.GetProperty( &bright );
+	if (error != PGRERROR_OK)
+    {
+		error.PrintErrorTrace();
+		return;
+    }
+
+	cout << "Brightness: " << bright.absValue << endl;
+
+	bright.type = AUTO_EXPOSURE;
+	error = cam.GetProperty( &bright );
+	if (error != PGRERROR_OK)
+    {
+		error.PrintErrorTrace();
+		return;
+    }
+
+	cout << "Exposure: " << bright.absValue << endl;
+
+	bright.type = GAMMA;
+	error = cam.GetProperty( &bright );
+	if (error != PGRERROR_OK)
+    {
+		error.PrintErrorTrace();
+		return;
+    }
+
+	cout << "Gamma: " << bright.absValue << endl;
+
+	bright.type = SHUTTER;
+	error = cam.GetProperty( &bright );
+	if (error != PGRERROR_OK)
+    {
+		error.PrintErrorTrace();
+		return;
+    }
+
+	cout << "Shutter: " << bright.absValue << endl;
+
+	bright.type = GAIN;
+	error = cam.GetProperty( &bright );
+	if (error != PGRERROR_OK)
+    {
+		error.PrintErrorTrace();
+		return;
+    }
+
+	cout << "Gain: " << bright.absValue << endl;
 
 	for(int i = 0; i < cameraBaseSettings->propertyType.size(); i++) {
 		setCameraFeature(cameraBaseSettings->propertyType[i], cameraBaseSettings->propertyFirstValue[i], cameraBaseSettings->propertySecondValue[i], cameraBaseSettings->isPropertyAuto[i],
